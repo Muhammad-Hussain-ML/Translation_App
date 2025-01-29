@@ -1,8 +1,8 @@
 import streamlit as st
-from transformers import MBartForConditionalGeneration, MBart50TokenizerFast
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
-# Load the model and tokenizer
-MODEL_NAME = "abdulwaheed1/english-to-urdu-translation-mbart"
+# Load model and tokenizer
+model_name = 'ai4bharat/indictrans2-en-ur'
 @st.cache_resource
 def load_model():
     tokenizer = MBart50TokenizerFast.from_pretrained(MODEL_NAME)
