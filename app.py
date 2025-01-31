@@ -5,8 +5,8 @@ from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 model_name = 'ai4bharat/indictrans2-en-ur'
 @st.cache_resource
 def load_model():
-    tokenizer = MBart50TokenizerFast.from_pretrained(model_name)
-    model = MBartForConditionalGeneration.from_pretrained(model_name)
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
     return tokenizer, model
 
 tokenizer, model = load_model()
