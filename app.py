@@ -3,6 +3,7 @@ from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 # Load model and tokenizer
 model_name = 'ai4bharat/indictrans2-en-ur'
+
 @st.cache_resource
 def load_model():
     tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -24,7 +25,7 @@ if st.button("Translate"):
         inputs = tokenizer(text, return_tensors="pt", padding=True, truncation=True)
         # Generate translation
         output_ids = model.generate(**inputs)
-        translated_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+        translated_text = tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0]
         # Display translation
         st.success("Translation:")
         st.write(translated_text)
